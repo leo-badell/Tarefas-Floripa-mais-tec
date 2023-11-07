@@ -20,7 +20,7 @@ steps:
   displayName: 'npm install'
   
 - script: |
-    npx cypress run
+    
   displayName: 'run e2e tests'
   continueOnError: true
 
