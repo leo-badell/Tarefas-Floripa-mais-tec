@@ -3,44 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilo.css">
     <title>Calculadora</title>
 </head>
 <body>
  
-    <form id="calculadoraForm">
+ 
         
-    <h1>Calculadora do projeto 2</h1>
+    <div class="container">
 
-    <p>Esse é um pequeno projeto para praticar html da Trilha dev</p>
+        <h1>Calculadora do projeto 2</h1>
 
-    <ol> 
-        <li>Acesse no sistema</li>
-        <li>Coloque um valor dentro dos inputs</li>
-        <li>Clique no botão para realizar o cálculo</li>
-        <li>Verifique se o resultado é correto</li>
-    </ol>
+        <h3>Projeto  da Trilha dev</h3>
+    
+        <ol> 
+            <li>Acesse no sistema</li>
+            <li>Coloque um valor dentro dos inputs</li>
+            <li>Clique no botão para realizar o cálculo</li>
+            <li>Verifique se o resultado é correto</li>
+        </ol>
+    
+        <select class="select" id="operacao">
+            <option value="soma" selected>Soma</option>
+            <option value="subtracao">Subtração</option>
+            <option value="multiplicacao">Multiplicação</option>
+            <option value="divisao">Divisão</option>
+            <option value="exponenciacao">Exponenciação</option>
+            <option value="resto">Resto</option>
+        </select>
+        <br />
+        <br />
+    
+        <label for="Ingresse um valor">Ingresse um valor</label>
+        <br />
+        <input id="valorInput1" type="number" placeholder="Digite um valor"><br />
+        <br />
+        <label for="Ingresse um valor">Ingresse um valor</label>
+        <input id="valorInput2" type="number" placeholder="Digite um valor"><br  />
+        <br />
+        <button id="calcularButton">Calcular resultado</button>
+        <br />
 
-    <select>
-        <option value="soma" selected>Soma</option>
-        <option value="subtracao">Subtração</option>
-        <option value="multiplicacao">Multiplicação</option>
-        <option value="divisao">Divisão</option>
-        <option value="exponenciação">Exponenciação</option>
-        <option value="resto">Resto</option>
-    </select>
-    <br />
-    <br />
+        <div class="resultado">
+            <p class="resultado">O resultado da operação é:</p>
+            <input id="resultadoInput" type="number">
+        </div>
 
-    <label for="Ingresse um valor">Ingresse um valor</label>
-    <input id= "valorInput" type="number" placeholder="Digite um valor"><br />
-    <br />
-    <label for="Ingresse um valor">Ingresse um valor</label>
-    <input  id="resultadoInput" type="number" placeholder="Digite um valor" readonly><br  />
-    <br />
-    <button id="calcularButton">Calcular resultado</button>
-    <p>O resultado da operação é:</p>
-  
-    </form>
+    </div>    
+
+    <script>
+        document.getElementById('calcularButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            
+            let valor1 = parseFloat(document.getElementById('valorInput1').value);
+            let valor2 = parseFloat(document.getElementById('valorInput2').value);
+            let operacao = document.getElementById('operacao').value;
+            let resultado;
+
+            
+            switch (operacao) {
+                case 'soma':
+                    resultado = valor1 + valor2;
+                    break;
+                case 'subtracao':
+                    resultado = valor1 - valor2;
+                    break;
+                case 'multiplicacao':
+                    resultado = valor1 * valor2;
+                    break;
+                case 'divisao':
+                    resultado = valor1 / valor2;
+                    break;
+                case 'exponenciacao':
+                    resultado = Math.pow(valor1, valor2);
+                    break;
+                case 'resto':
+                    resultado = valor1 % valor2;
+                    break;
+                default:
+                    resultado = 'Operação inválida';
+            }
+
+            
+            document.getElementById('resultadoInput').value = resultado;
+        });
+    </script>
     
 </body>
 </html>
